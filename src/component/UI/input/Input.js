@@ -17,7 +17,8 @@ const Input = (props) => {
         type={type}
         placeholder={placeholder}
         onChange={(event) => onChangeHandler(event)}
-        required />
+        required
+      />
     </div>
   )
 }

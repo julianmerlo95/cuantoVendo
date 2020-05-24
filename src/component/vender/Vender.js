@@ -35,17 +35,18 @@ const Vender = () => {
     setFactura({ ...factura, [name]: value });
   }
 
-
   const addedProductHandler = () => {
-    setArrayFactura([...arrayFactura, { factura }]);
-    setArrayFacturaMes([...arrayFacturaMes, { factura }])
+    if (factura.producto != "" && factura.precio != 0) {
+      setArrayFactura([...arrayFactura, { factura }]);
+      setArrayFacturaMes([...arrayFacturaMes, { factura }]);
+    } else {
+      alert('El producto y cantidad no puede estar en 0');
+    }
   }
 
   const onClickHandler = () => {
     setArrayFactura([])
   }
-
-
 
   let producto = null;
   if (arrayFactura.length !== 0) {
@@ -76,13 +77,15 @@ const Vender = () => {
         </div>
         <div>
           <h2 className="vender__contenido__factura__factura">Factura</h2>
-          <Input type="text" placeholder="producto" name="producto" facturaHandler={facturaHandler} />
-          <Input type="number" placeholder="cantidad" name="cantidad" facturaHandler={facturaHandler} />
-          <Input type="number" placeholder="precio" name="precio" facturaHandler={facturaHandler} />
+          <Input type="text" placeholder="producto"
+            name="producto" facturaHandler={facturaHandler} />
+          <Input type="number" placeholder="cantidad"
+            name="cantidad" facturaHandler={facturaHandler} />
+          <Input type="number" placeholder="precio"
+            name="precio" facturaHandler={facturaHandler} />
           <button className="vender__contenido__factura__button--agregar"
             onClick={addedProductHandler}>Agregar producto</button>
-          <br></br> <br></br>
-          {arrayFactura.length === 0 ? 'No hay productos cargados' : <h2>{producto}</h2>}
+          <h4> {arrayFactura.length === 0 ? 'No hay productos cargados' : <span>{producto}</span>}</h4>
         </div>
         <div className="vender__contenido__factura__total--factura">
           <h2>Total factura: {totalFactura}</h2>
